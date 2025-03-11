@@ -1,5 +1,6 @@
 import logging
 
+from celery import shared_task
 from django.db.utils import IntegrityError
 
 from apps.weather.api import fetch_historical_weather
@@ -9,6 +10,7 @@ from apps.weather.models import City, WeatherData
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 
+@shared_task
 def fetch_weather_data():
     for city_name in CITIES:
         try:
