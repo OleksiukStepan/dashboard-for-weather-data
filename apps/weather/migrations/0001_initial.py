@@ -8,32 +8,52 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='City',
+            name="City",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, unique=True)),
-                ('region', models.TextField()),
-                ('country', models.CharField(max_length=100)),
-                ('latitude', models.FloatField()),
-                ('longitude', models.FloatField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, unique=True)),
+                ("region", models.TextField()),
+                ("country", models.CharField(max_length=100)),
+                ("latitude", models.FloatField()),
+                ("longitude", models.FloatField()),
             ],
         ),
         migrations.CreateModel(
-            name='WeatherData',
+            name="WeatherData",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('temperature', models.FloatField()),
-                ('feels_like', models.FloatField()),
-                ('condition', models.CharField(max_length=100)),
-                ('humidity', models.IntegerField()),
-                ('wind_speed', models.FloatField()),
-                ('timestamp', models.DateTimeField(auto_now_add=True)),
-                ('city', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='weather.city')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("temperature", models.FloatField()),
+                ("feels_like", models.FloatField()),
+                ("condition", models.CharField(max_length=100)),
+                ("humidity", models.IntegerField()),
+                ("wind_speed", models.FloatField()),
+                ("timestamp", models.DateTimeField(auto_now_add=True)),
+                (
+                    "city",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="weather.city"
+                    ),
+                ),
             ],
         ),
     ]

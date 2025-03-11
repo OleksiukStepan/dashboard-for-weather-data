@@ -17,4 +17,3 @@ class WeatherData(models.Model):
     humidity = models.IntegerField()
     wind_speed = models.FloatField()
     timestamp = models.DateTimeField(auto_now_add=True)
-
