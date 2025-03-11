@@ -31,7 +31,11 @@ SECRET_KEY = "django-insecure-6$joo$4lic+bvup4%klz=pdi0ypcdj83r)$2asw-ellk5lhn$y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "0.0.0.0",
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition
@@ -92,7 +96,7 @@ DATABASES = {
         "NAME": os.getenv("POSTGRES_DB"),
         "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": os.getenv("POSTGRES_HOST", "localhost"),
+        "HOST": os.getenv("POSTGRES_HOST"),
         "PORT": os.getenv("POSTGRES_DB_PORT", 5432),
     }
 }
@@ -149,6 +153,9 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
 }
 
-CELERY_BROKER_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
-CELERY_ACCEPT_CONTENT = ["json"]
-CELERY_TASK_SERIALIZER = "json"
+CELERY_BROKER_URL = "redis://redis:6379"
+# CELERY_ACCEPT_CONTENT = ["json"]
+# CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = "Europe/Kyiv"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
