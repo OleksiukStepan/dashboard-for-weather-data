@@ -11,9 +11,18 @@ class City(models.Model):
 
 class WeatherData(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    temperature = models.FloatField()
-    feels_like = models.FloatField()
+    max_temperature = models.FloatField()
+    min_temperature = models.FloatField()
+    avg_temperature = models.FloatField()
     condition = models.CharField(max_length=100)
     humidity = models.IntegerField()
-    wind_speed = models.FloatField()
-    timestamp = models.DateTimeField(auto_now_add=True)
+    max_wind_speed = models.FloatField()
+    chance_of_rain = models.IntegerField()
+    chance_of_snow = models.IntegerField()
+    date = models.DateField()
+
+    class Meta:
+        unique_together = ("city", "date")
+
+    def __str__(self):
+        return f"{self.city.name} - {self.date} - {self.avg_temperature}°C"
