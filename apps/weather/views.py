@@ -10,7 +10,11 @@ from apps.weather.serializers import CitySerializer, WeatherDataSerializer
 
 
 def index(request):
-    return render(request, "index.html", {"cities": CITIES})
+    context = {
+        "cities": CITIES,
+        "days": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    }
+    return render(request, "index.html", context)
 
 
 class CityListView(ListCreateAPIView):
