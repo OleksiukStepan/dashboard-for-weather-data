@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+</head>
+<body>
+<div class="container">
+  <h1>Weather Dashboard</h1>
+
+  <form method="get" action="{% url 'weather:weather-list' %}">
+    <!-- Days selection -->
+    <label for="days">Select forecast days (1-14):</label>
+    <select name="days" id="days">
+      {% for i in "1234567891011121314" %}
+        <option value="{{ i }}">{{ i }} days</option>
+      {% endfor %}
+    </select>
+
+    <!-- City selection -->
+    <label>Select Cities:</label>
+    <div class="city-list">
+      {% for city in cities %}
+        <label>
+          <input type="checkbox" name="city_name" value="{{ city }}"> {{ city }}
+        </label>
+      {% endfor %}
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="submit-btn">Generate Dashboard</button>
+  </form>
+</div>
+</body>
+</html>
